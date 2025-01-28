@@ -8,27 +8,25 @@ public class Invoice
 
     public static void OfferMainInfo(Section section, OfferMainInfoResponse mainInfo)
     {
+        section.AddImage("Assets/logo-tassullo-positive.png");
+        
         Table table = section.AddTable();
         table.Style = "Table";
-        table.Borders.Color = Colors.Transparent;
-        table.Rows.LeftIndent = 0;
+        
         
         Column column1 = table.AddColumn("9cm");
         Column column2 = table.AddColumn("9cm");
-        
-        Row row = table.AddRow();
         column1.Format.Alignment = ParagraphAlignment.Left;
         column2.Format.Alignment = ParagraphAlignment.Right;
         
+        Row row = table.AddRow();
         Paragraph companyInfo = row.Cells[0].AddParagraph($"{mainInfo.ContactFullName}\nVia Azienda 10, 00127 Roma (RM) - IT\nP.Iva 12345678901");
-        companyInfo.Format.Font.Name = "Arial";
-        companyInfo.Format.Font.Size = 10;
+        
         companyInfo.Format.SpaceBefore = "0.2cm";
         
         Paragraph offerDetails = row.Cells[1].AddParagraph("# OFFERTA 14\nData 19 dicembre 2024");
         offerDetails.Format.Alignment = ParagraphAlignment.Right;
-        offerDetails.Format.Font.Name = "Arial";
-        offerDetails.Format.Font.Size = 10;
+        
         offerDetails.Format.SpaceAfter = "0.5cm";
 
         table.Format.SpaceAfter = "1cm";

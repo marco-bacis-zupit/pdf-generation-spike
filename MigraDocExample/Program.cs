@@ -2,6 +2,7 @@
 using MigraDoc.DocumentObjectModel.IO;
 using MigraDoc.Rendering;
 using MigraDocExample;
+using PdfSharp.Fonts;
 using PdfSharp.Pdf;
 using PdfSharp.Quality;
 using Styles = MigraDocExample.Styles;
@@ -21,6 +22,8 @@ var document = new Document
         Author = "Tassullo"
     }
 };
+
+GlobalFontSettings.FontResolver = new InterFontResolver();
 
 Styles.DefineStyles(document);
 
@@ -52,7 +55,7 @@ var pdfRenderer = new PdfDocumentRenderer
 pdfRenderer.RenderDocument();
 
 // Save the document...
-var filename = PdfFileUtility.GetTempPdfFullFileName("example.pdf");
+var filename = "example.pdf";
 pdfRenderer.PdfDocument.Save(filename);
 
 // ...and start a viewer.
